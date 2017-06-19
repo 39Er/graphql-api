@@ -16,7 +16,10 @@ const user = {
       type: GraphQLString,
     },
   },
-  resolve: async function (_, { _id, username }) {
+  resolve: async function (_, { _id, username }, context) {
+    if (!context.session || !context.session.user) {
+      throw new Error('Session is invilid');
+    }
     let conds = {};
     if (_id) {
       conds._id = _id;
@@ -45,10 +48,9 @@ const login = {
       type: new GraphQLNonNull(userInputType),
     },
   },
-  resolve: async function (_, { userInfo }) {
+  resolve: async function (_, { userInfo }, context) {
     try {
       let result = await User.findOne({ username: userInfo.username }).exec();
-      console.log(result);
       if (!result) {
         throw new Error('invlid user');
       }
@@ -56,6 +58,7 @@ const login = {
       if (encryptedPassword !== result.password) {
         throw new Error('password is incorrect');
       }
+      context.session.user = result;
       return 'login success';
     } catch (e) {
       logger.error(e);

@@ -6,11 +6,14 @@ const { register } = require('./mutations/user');
 
 let schema = new GraphQLSchema({
   query: new GraphQLObjectType({
-    name: 'RootQueryType',
+    name: 'Query',
     fields: {
       hello: {
         type: GraphQLString,
-        resolve() {
+        resolve(_, args, context) {
+          if (!context.session || !context.session.user) {
+            throw new Error('Session is invilid');
+          }
           return 'world';
         },
       },
@@ -19,7 +22,7 @@ let schema = new GraphQLSchema({
     },
   }),
   mutation: new GraphQLObjectType({
-    name: 'Mutations',
+    name: 'Mutation',
     fields: {
       register,
     },
