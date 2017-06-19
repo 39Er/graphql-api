@@ -41,6 +41,9 @@
             {
                 "functions": false
             }
+        ],
+        "no-underscore-dangle":[
+            0
         ]
     },
     "env": {

@@ -12,6 +12,7 @@
   "author": "39Er",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "bunyan": "^1.8.10",
     "bunyan-rotate-file-stream": "^1.1.4",
     "config": "^1.26.1",
@@ -19,6 +20,7 @@
     "express-graphql": "^0.6.6",
     "graphiql": "^0.10.2",
     "graphql": "^0.10.1",
+    "mongoose": "^4.10.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1"
   },
