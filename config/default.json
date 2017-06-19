@@ -1,0 +1,14 @@
+{
+  "port": 3000,
+  "mongo": {
+    "host": "172.16.4.152",
+    "port": "27017",
+    "dbName": "db"
+  },
+  "mainLog": {
+    "name": "graph-api",
+    "level": "debug",
+    "src": false,
+    "errorLogPath": "logs/error.log"
+  }
+}

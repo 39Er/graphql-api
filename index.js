@@ -3,7 +3,9 @@
 const express = require('express');
 const graphqlHTTP = require('express-graphql');
 const { schema, root } = require('./schema/schema');
+const { logger, config } = require('./global');
 
+const port = config.get('port');
 const app = express();
 
 app.post('/graphql', graphqlHTTP({
@@ -18,7 +20,6 @@ app.get('/graphql', graphqlHTTP({
   graphiql: true,
 }));
 
-
-app.listen(3000, () => {
-  console.log('listening on 3000');
+app.listen(port, () => {
+  logger.info('listening on %s', port);
 });
