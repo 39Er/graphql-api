@@ -31,7 +31,7 @@ const register = {
       };
     } catch (e) {
       logger.error(e);
-      throw new Error(e);
+      throw new Error(e.message);
     }
   },
 };

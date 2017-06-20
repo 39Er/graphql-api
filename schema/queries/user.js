@@ -1,11 +1,13 @@
 'use strict';
 
 const { GraphQLString, GraphQLList, GraphQLNonNull } = require('graphql');
+const { Types } = require('mongoose');
 const { userType, userInputType } = require('../types/userType');
 const User = require('../../model/user');
 const logger = require('../../global').logger;
 const { encrypt } = require('../../lib/passwordEncrypt');
 
+const { ObjectId } = Types;
 const user = {
   type: new GraphQLList(userType),
   args: {
@@ -22,6 +24,9 @@ const user = {
     }
     let conds = {};
     if (_id) {
+      if (!ObjectId.isValid(_id)) {
+        throw new Error('invilid _id');
+      }
       conds._id = _id;
     }
     if (username) {
@@ -36,7 +41,7 @@ const user = {
       return result;
     } catch (e) {
       logger.error(e);
-      throw new Error(e);
+      throw new Error(e.message);
     }
   },
 };
@@ -62,7 +67,7 @@ const login = {
       return 'login success';
     } catch (e) {
       logger.error(e);
-      throw new Error(e);
+      throw new Error(e.message);
     }
   },
 
