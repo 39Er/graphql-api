@@ -41,13 +41,7 @@ app.use(session({
   resave: false,
 }));
 
-
-app.post('/graphql', graphqlHTTP({
-  schema: schema,
-  graphiql: false,
-}));
-
-app.get('/graphql', graphqlHTTP({
+app.use('/graphql', graphqlHTTP({
   schema: schema,
   graphiql: true,
 }));

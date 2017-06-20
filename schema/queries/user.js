@@ -19,21 +19,21 @@ const user = {
     },
   },
   resolve: async function (_, { _id, username }, context) {
-    if (!context.session || !context.session.user) {
-      throw new Error('Session is invilid');
-    }
-    let conds = {};
-    if (_id) {
-      if (!ObjectId.isValid(_id)) {
-        throw new Error('invilid _id');
-      }
-      conds._id = _id;
-    }
-    if (username) {
-      conds.username = username;
-    }
-    let result = null;
     try {
+      if (!context.session || !context.session.user) {
+        throw new Error('Session is invilid');
+      }
+      let conds = {};
+      if (_id) {
+        if (!ObjectId.isValid(_id)) {
+          throw new Error('invilid _id');
+        }
+        conds._id = _id;
+      }
+      if (username) {
+        conds.username = username;
+      }
+      let result = null;
       result = await User.find(conds).exec();
       if (!result || result.length === 0) {
         throw new Error('wrong query');
@@ -57,7 +57,7 @@ const login = {
     try {
       let result = await User.findOne({ username: userInfo.username }).exec();
       if (!result) {
-        throw new Error('invlid user');
+        throw new Error('invlid user:%s', userInfo.username);
       }
       let encryptedPassword = await encrypt(userInfo.password, result.salt);
       if (encryptedPassword !== result.password) {
