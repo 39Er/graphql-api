@@ -153,9 +153,9 @@ builtin-modules@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
 
-bunyan-rotate-file-stream@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/bunyan-rotate-file-stream/-/bunyan-rotate-file-stream-1.1.4.tgz#45b5fc552ad649d146ba907098a12b7ea456276e"
+bunyan-rotate-file-stream@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/bunyan-rotate-file-stream/-/bunyan-rotate-file-stream-1.1.7.tgz#dc2d5a0b1c6392c4e4db20c3b4cc8923c144b1f3"
   dependencies:
     bunyan "^1.8.10"
     moment "^2.18.1"
