@@ -5,7 +5,7 @@
     "port": "27017",
     "dbName": "db"
   },
-   "redis": {
+  "redis": {
     "host": "127.0.0.1",
     "port": "6379"
   },
@@ -14,5 +14,6 @@
     "level": "debug",
     "src": false,
     "errorLogPath": "logs/error.log"
-  }
+  },
+  "whitelist": []
 }

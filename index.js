@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
@@ -23,6 +24,19 @@ redisClient.on('error', (err) => {
   process.exit(1);
 });
 
+let corsOptions = {
+  origin: function (origin, callback) {
+    let whitelist = config.get('whitelist');
+    if (whitelist.length === 0) {
+      return callback(null, true);
+    }
+    if (whitelist.indexOf(origin) !== -1) {
+      return callback(null, true);
+    }
+    return callback(new Error('Not allowed by CORS'));
+  },
+};
+app.use(cors(corsOptions));
 app.use(bodyParser.text({ type: 'application/graphql' }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
