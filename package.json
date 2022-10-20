@@ -25,7 +25,7 @@
     "express-session": "^1.15.3",
     "graphiql": "^0.10.2",
     "graphql": "^0.10.1",
-    "mongoose": "^4.10.7",
+    "mongoose": "^4.13.21",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "redis": "^2.7.1"
